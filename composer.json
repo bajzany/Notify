@@ -1,0 +1,33 @@
+{
+  "name": "bajzany/notify",
+  "type": "extensions",
+  "description": "Notify Control for Nette Framework",
+  "keywords": ["notify", "control"],
+  "homepage": "https://github.com/bajzany/Notify",
+  "license": [],
+  "authors": [
+    {
+      "name": "Radek Zíka",
+      "homepage": "http://dipcom.cz",
+      "email": "radek.zika@dipcom.cz"
+    }
+  ],
+  "support": {
+    "email": "radek.zika@dipcom.cz",
+    "issues": "https://github.com/bajzany/Notify"
+  },
+  "require": {
+    "php": "^7.2",
+    "nette/di": "^2.4",
+    "nette/application": "^2.4",
+    "nette/bootstrap": "^2.4",
+    "latte/latte": "^2.4",
+    "nette/utils": "^2.4",
+    "chomenko/app-webloader": "@dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Bajzany\\Notify\\": "src/"
+    }
+  }
+}
