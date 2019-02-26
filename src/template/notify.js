@@ -98,7 +98,7 @@ function mkNoti(title, message, mkOptions){
 
 	var messageLength = 0;
 	if(message != undefined){ messageLength = message.length;  totalLength = totalLength + messageLength; }
-	if(totalLength >= 140){ message = ''; }else if(messageLength >= (140 - (titleLength*1.1))){  message = message.substr(0,(140 - (titleLength*1.1)))+'...';  }
+	if(totalLength >= 500){ message = ''; }else if(messageLength >= (140 - (titleLength*1.1))){  message = message.substr(0,(140 - (titleLength*1.1)))+'...';  }
 
 	var iconColor = '';
 	if(config.icon.color != null){
