@@ -23,7 +23,7 @@
     "nette/bootstrap": "^2.4",
     "latte/latte": "^2.4",
     "nette/utils": "^2.4",
-    "chomenko/app-webloader": "@dev"
+    "chomenko/app-webloader": "^1.0"
   },
   "autoload": {
     "psr-4": {
