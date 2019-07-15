@@ -9,7 +9,7 @@ Required:
 - [nette/bootstrap](https://packagist.org/packages/nette/bootstrap)
 - [latte/latte](https://packagist.org/packages/latte/latte)
 - [nette/utils](https://packagist.org/packages/nette/utils)
-- [chomenko/app-webloader](https://packagist.org/packages/chomenko/app-webloader)
+- [nettpack/stage](https://github.com/nettpack/stage)
 
 ![Paginator](src/Doc/image1.PNG?raw=true)
 
@@ -24,8 +24,7 @@ Required:
 - Register into Nette Application
 
 		extensions:
-    		Notify: Bajzany\Notify\DI\NotifyExtension
-    		
+    		Notify: Bajzany\Notify\DI\NotifyExtension		
 
 - How to Use:
 
@@ -40,3 +39,19 @@ Required:
 	- Template (.latte) in your base Latte
 	
 			{control notify}
+
+
+- Create callable property onAfterRender and function afterRender into presenter where is placed notifyTrait. This is important because in ajax request must be start redrawControl.
+
+````php
+/**
+ * @var callable[]
+ */
+public $onAfterRender = [];
+
+protected function afterRender()
+{
+	parent::afterRender();
+	$this->onAfterRender();
+}
+````

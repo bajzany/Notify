@@ -1,15 +1,15 @@
 <script>
 	(function(){
-		mkNotifications(JSON.parse({json_encode($options)}));
-
+		window.notifications = {
+			options: JSON.parse({json_encode($options)}),
+			notifications: []
+		};
 		{foreach $notifications as $notification}
-			mkNoti(
-				{$notification->getTitle()},
-				{$notification->getMessage()},
-				{
-					status: {$notification->getType()}
-				}
-			);
+			window.notifications.notifications.push({
+				title: {$notification->getTitle()},
+				message: {$notification->getMessage()},
+				status: {$notification->getType()},
+			});
 		{/foreach}
 	})();
 </script>

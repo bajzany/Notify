@@ -8,7 +8,9 @@
 namespace Bajzany\Notify\DI;
 
 use Bajzany\Notify\INotifyControl;
+use Bajzany\Notify\Listener;
 use Bajzany\Notify\Notifications;
+use Kdyby\Events\DI\EventsExtension;
 use Nette\Application\Application;
 use Nette\Configurator;
 use Nette\DI\Compiler;
@@ -28,14 +30,10 @@ class NotifyExtension extends CompilerExtension
 		$builder->addDefinition($this->prefix('Notify'))
 			->setImplement(INotifyControl::class)
 			->setInject(TRUE);
-	}
 
-	public function beforeCompile()
-	{
-		$builder = $this->getContainerBuilder();
-		$application = $builder->getDefinitionByType(Application::class);
-		$notifications = $builder->getDefinitionByType(Notifications::class);
-		$application->addSetup('?->initialSets(?)', [$notifications, $application]);
+		$builder->addDefinition($this->prefix("application.listener"))
+			->setFactory(Listener::class)
+			->addTag(EventsExtension::TAG_SUBSCRIBER);
 	}
 
 	/**

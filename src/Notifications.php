@@ -7,8 +7,6 @@
 
 namespace Bajzany\Notify;
 
-use Chomenko\AppWebLoader\AppWebLoader;
-use Nette\Application\Application;
 use Nette\Http\Session;
 
 class Notifications
@@ -30,29 +28,13 @@ class Notifications
 	private $session;
 
 	/**
-	 * @param AppWebLoader $appWebLoader
 	 * @param Session $session
 	 * @param array $options
 	 */
-	public function __construct(AppWebLoader $appWebLoader, Session $session, $options = [])
+	public function __construct(Session $session, $options = [])
 	{
-		$this->webloader = $appWebLoader;
 		$this->options = $options;
 		$this->session = $session->getSection('notify');
-	}
-
-	/**
-	 * @param Application $application
-	 * @throws \Chomenko\AppWebLoader\Exceptions\AppWebLoaderException
-	 * @throws \ReflectionException
-	 */
-	public function initialSets(Application $application)
-	{
-		$collection = $this->webloader->createCollection("notificationJs");
-		$collection->addScript(__DIR__ . "/template/notify.js");
-
-		$collection = $this->webloader->createCollection("notificationCss");
-		$collection->addStyles(__DIR__ . "/template/notify.css");
 	}
 
 	/**

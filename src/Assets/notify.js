@@ -9,15 +9,13 @@ var icons = {
 	dark:    'fa fa-bell',
 	purple:  'fa fa-bell'
 };
-
 var defaultSound = './src/sound/notification.mp3',
 	defaultClose = './src/sound/close.mp3';
 
 var uniqueId = 0;
-
-function mkNotifications(mkConfig){
+export function mkNotifications(mkConfig){
 	if(mkConfig == undefined){
-		config = {
+		var config = {
 			positionX: 'right',
 			positionY: 'bottom',
 			scrollable: true,
@@ -25,7 +23,7 @@ function mkNotifications(mkConfig){
 			max: 5
 		};
 	}else{
-		config = {
+		var config = {
 			positionX: mkConfig.positionX != undefined ? mkConfig.positionX : 'right',
 			positionY: mkConfig.positionY != undefined ? mkConfig.positionY :  'bottom',
 			scrollable: mkConfig.scrollable != undefined ? mkConfig.scrollable : true,
@@ -34,8 +32,16 @@ function mkNotifications(mkConfig){
 		}
 	}
 
-	if(config.scrollable == true){ scrollable = ' mk-scrollable'; }else{ scrollable = ''; }
-	if(config.rtl == true){ rtl = ' mk-rtl'; }else{ rtl = ''; }
+	if(config.scrollable == true){
+		var scrollable = ' mk-scrollable';
+	}else{
+		var scrollable = '';
+	}
+	if(config.rtl == true){
+		var rtl = ' mk-rtl'; 
+	}else{
+		var rtl = '';
+	}
 
 	var mkNotifications = '<div id="mk-notifications" data-max="'+config.max+'" class="mk-notifications mk-'+config.positionY+' mk-'+config.positionX+scrollable+rtl+'"></div>',
 		oldMkNotifications = document.getElementById('mk-notifications');
@@ -47,7 +53,7 @@ function mkNotifications(mkConfig){
 	$('body').prepend(mkNotifications);
 }
 
-function mkNoti(title, message, mkOptions){
+export function mkNoti(title, message, mkOptions){
 	var target = document.getElementById('mk-notifications');
 	var config = {
 		status: 'default',
