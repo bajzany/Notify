@@ -4,7 +4,7 @@ if (module.hot) {
 
 import {mkNotifications, mkNoti} from './notify.js';
 
-import {App, BaseComponent, SAGA_REDRAW_SNIPPET} from "Stage"
+import {App, BaseComponent, SAGA_REDRAW_SNIPPET, Saga} from "Stage"
 const SAGA_NOTIFICATION_REQUEST_STARTED = 'SAGA_NOTIFICATION_REQUEST_STARTED';
 
 class NotificationControl extends BaseComponent {
@@ -12,10 +12,10 @@ class NotificationControl extends BaseComponent {
 	initial() {
 		super.initial();
 		this.installPlugins();
-		this.createSaga(SAGA_NOTIFICATION_REQUEST_STARTED, this.installPlugins);
 	}
 
-	installPlugins(action){
+	@Saga(SAGA_NOTIFICATION_REQUEST_STARTED)
+	public installPlugins(action = null){
 		if (action) {
 			const {content, snippetName, response} = action.payload;
 			let source = $(document).find('#' + snippetName);
